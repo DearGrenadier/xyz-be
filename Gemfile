@@ -13,7 +13,7 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'rack-cors'
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry', '~> 0.12.2'
 end
 
 group :development do

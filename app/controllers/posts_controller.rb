@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   def create
-    binding.pry
     post = Post.create post_params
 
     if post.persisted?

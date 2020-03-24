@@ -11,3 +11,7 @@ RUN gem install bundler:2.1.2
 RUN bundle install
 
 ADD . $APP_HOME
+
+EXPOSE 8080
+
+ENTRYPOINT ["sh", "./bin/entrypoint"]

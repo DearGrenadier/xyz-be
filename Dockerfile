@@ -14,4 +14,4 @@ ADD . $APP_HOME
 
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "./bin/entrypoint"]
+ENTRYPOINT ["sh", "bin/entrypoint"]

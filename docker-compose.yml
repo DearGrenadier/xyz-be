@@ -1,8 +1,5 @@
 version: '2'
 
-volumes:
-  db-data:
-    external: false
 services:
   db:
     image: postgres:11
@@ -10,13 +7,12 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_HOST_AUTH_METHOD: "trust"
-    volumes:
-      - db-data:/var/lib/postgresql/db-data
-
   web:
     tty: true
     stdin_open: true
-    build: ./Dockerfile.dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
     environment:
       POSTGRESQL_USER: postgres
       POSTGRESQL_HOST: db

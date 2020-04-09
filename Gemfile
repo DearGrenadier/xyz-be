@@ -11,6 +11,7 @@ gem 'pg', '1.2.2'
 gem 'puma', '4.3.3'
 gem 'rack-cors', '1.1.1'
 gem 'rails', '6.0.2.1'
+gem 'rubocop', require: false
 
 group :development, :test do
   gem 'pry', '0.12.2'

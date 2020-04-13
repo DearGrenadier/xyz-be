@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   def index
-    posts = Post.all
+    posts = Post.all.order(created_at: :desc)
 
     render json: posts, status: :ok
   end
@@ -10,9 +10,11 @@ class PostsController < ApplicationController
   def create
     post = Post.create post_params
 
-    render json: post, status: :created if post.persisted?
-
-    render json: post.errors.to_json, status: :unpocessable_untity
+    if post.persisted?
+      render json: post, status: :created
+    else
+      render json: post.errors.to_json, status: :unpocessable_untity
+    end
   end
 
   def show
@@ -22,20 +24,24 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
 
-    render json: post, status: :ok if post.update(post_params)
-
-    render json: post.errors.to_json, status: :unpocessable_untity
+    if post.update(post_params)
+      render json: post, status: :ok
+    else
+      render json: post.errors.to_json, status: :unpocessable_untity
+    end
   end
 
   def destroy
-    render status: :ok if Post.delete(params[:id]).zero?
-
-    render status: :unpocessable_untity
+    if Post.delete(params[:id]).zero?
+      head :unpocessable_untity
+    else
+      head :ok
+    end
   end
 
   private
 
   def post_params
-    params.permit(:body, :title)
+    params.permit(:id, :body, :title, :status)
   end
 end

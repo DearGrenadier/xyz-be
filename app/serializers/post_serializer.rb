@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :body, :title
+  attributes :id, :body, :title, :status
 end

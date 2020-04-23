@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :authenticate!, except: %i[index show]
+
   def index
-    posts = Post.all.order(created_at: :desc)
+    posts = scope.where(filter_params).order(created_at: :desc)
 
     render json: posts, status: :ok
   end
@@ -22,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
+    post = scope.find(params[:id])
 
     if post.update(post_params)
       render json: post, status: :ok
@@ -43,5 +45,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.permit(:id, :body, :title, :status)
+  end
+
+  def filter_params
+    params.permit(:status)
+  end
+
+  def scope
+    current_user.present? ? Post.all : Post.published
   end
 end

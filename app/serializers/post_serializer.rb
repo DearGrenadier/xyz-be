@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :body, :title, :status, :created_at
+  attributes :id, :body, :title, :status, :updated_at
 
-  def created_at
-    object.created_at.strftime('%B %d, %Y')
+  def updated_at
+    object.updated_at.strftime('%B %d, %Y')
   end
 end

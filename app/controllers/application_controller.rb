@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
 
   def current_user
     @current_user ||= authenticate_with_http_basic do |user, password|
-      user == ENV.fetch('ADMIN_USER') && password == ENV.fetch('ADMIN_PASSWORD')
+      user == ENV.fetch('ADMIN_USERNAME') && password == ENV.fetch('ADMIN_PASSWORD')
     end
   end
 end

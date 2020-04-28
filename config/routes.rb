@@ -10,4 +10,4 @@ Rails.application.routes.draw do
   get '/check.txt', to: proc { [200, {}, ['it_works']] }
 end
 
-Rails.application.routes.default_url_options[:host] = ENV.fetch('HOST', 'localhost:8080')
+Rails.application.routes.default_url_options[:host] = ENV.fetch('HOST_URL', 'localhost:8080')

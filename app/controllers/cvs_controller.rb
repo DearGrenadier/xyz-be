@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CvsController < ApplicationController
+  before_action :authenticate!, except: %i[index]
+
   def index
     cvs =  CV.order(created_at: :desc).limit(params[:limit])
     render json: cvs, status: :ok

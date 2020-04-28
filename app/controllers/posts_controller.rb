@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    render json: Post.find(params[:id])
+    render json: Post.find(params[:id]), status: :ok
   end
 
   def update

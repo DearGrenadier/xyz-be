@@ -10,6 +10,7 @@ services:
   web:
     tty: true
     stdin_open: true
+    entrypoint: ["sh", "bin/entrypoint"]
     build:
       context: .
       dockerfile: ./Dockerfile.dev
@@ -22,6 +23,7 @@ services:
       ADMIN_PASSWORD: password
     ports:
       - "8080:8080"
+    command: bundle exec rails server -b 0.0.0.0 -p 8080
     depends_on:
       - db
     volumes:

@@ -2,4 +2,6 @@
 .git
 log/
 tmp/
+storage/
+CHECKS
 README.md
